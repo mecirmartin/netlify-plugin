@@ -67,6 +67,7 @@ exports.generateIndex = () => {
     const dependencies = getDependencies()
     const indexFile = generateIndexFile(dependencies)
 
-    fs.writeFileSync("./src/iteriaIndex.js", indexFile)
+    fs.writeFileSync("./src/iteriaIndex.js", `(() => { ${indexFile}})()`)
+    fs.writeFileSync('./public/index.js', `(() => { ${indexFile}})()`)
 }
   
