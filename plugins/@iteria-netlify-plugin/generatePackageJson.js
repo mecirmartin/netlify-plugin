@@ -11,7 +11,7 @@ exports.getNewPackageJson = () => {
         "cra-build-watch": "https://github.com/mecirmartin/cra-build-watch"
     },
     scripts: {
-        build: 'cra-build-watch'
+        build: parsedPackageJson.scripts.build.replace('react-scripts build', 'cra-build-watch')
     }
   }
   fs.writeFileSync("./package.json", JSON.stringify(finalPackageJson))
