@@ -55,7 +55,7 @@ const generateIndexFile = dependencies => {
   return indexFile
 }
 
-export const generateIndex = () => {
+exports.generateIndex = () => {
     const dependencies = getDependencies()
     const indexFile = generateIndexFile(dependencies)
     fs.writeFileSync("./public/index.js", indexFile)

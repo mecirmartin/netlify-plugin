@@ -1,6 +1,6 @@
 const fs = require('fs')
 
-export const getNewPackageJson = () => {
+exports.getNewPackageJson = () => {
   const packageJson = fs.readFileSync("./package.json")
   const parsedPackageJson = JSON.parse(packageJson)
 
