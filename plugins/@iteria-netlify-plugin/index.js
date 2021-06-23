@@ -1,5 +1,5 @@
-import { getNewPackageJson } from './generatePackageJson'
-import { generateIndex } from './generateIndex'
+const { getNewPackageJson } = require('./generatePackageJson')
+const { generateIndex } = require('./generateIndex')
 
 module.exports = {
   onPreBuild: async ({ utils: { build, status, cache, run, git } }) => {
