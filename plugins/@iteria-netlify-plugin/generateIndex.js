@@ -22,8 +22,10 @@ const generateIndexFile = dependencies => {
   })
 
   indexFile += `
-  window.__deps = {};
-  window.__deps_default = {};
+  export default () => {
+
+    window.__deps = {};
+    window.__deps_default = {};
   \n\n`
 
   dependencies.forEach(d => {
@@ -52,6 +54,8 @@ const generateIndexFile = dependencies => {
     `
   })
 
+  indexFile += '}\n'
+
   return indexFile
 }
 
@@ -67,7 +71,8 @@ exports.generateIndex = () => {
     const dependencies = getDependencies()
     const generatedIndex = generateIndexFile(dependencies)
 
-    fs.writeFileSync("./src/iteriaIndex.js", `export default () => { ${generatedIndex} }`)
+    fs.writeFileSync("./src/iteriaIndex.js", generatedIndex)
+    fs.writeFileSync('./public/iteriaIndex.js', generatedIndex)
     const projectEntry = findProjectEntry()
     const currIndexFile = fs.readFileSync(projectEntry, 'utf-8')
 
