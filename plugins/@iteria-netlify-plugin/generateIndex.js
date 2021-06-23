@@ -70,13 +70,11 @@ exports.generateIndex = () => {
     fs.writeFileSync("./src/iteriaIndex.js", `export default () => { ${generatedIndex} }`)
     const projectEntry = findProjectEntry()
     const currIndexFile = fs.readFileSync(projectEntry, 'utf-8')
-    const lastImport = currIndexFile.lastIndexOf('import')
-    const firstNewLine = currIndexFile.slice(lastImport).indexOf('\n')
 
-    const newIndexFile = currIndexFile.slice(0, firstNewLine) + 
-                    `import iteriaMain from './iteriaIndex'
-                     iteriaMain()
-                    ` + currIndexFile.slice(firstNewLine)
+    let strt = currIndexFile.lastIndexOf("\nimport ");
+    strt = currIndexFile.indexOf("\n", strt+1);
+
+    const newIndexFile = currIndexFile.splice(strt+1, 0, "import iteriaIndex from \'./iteriaIndex\';\niteriaIndex();\n")
 
     fs.writeFileSync('./public/index.js', newIndexFile)
     fs.writeFileSync(projectEntry, newIndexFile)
