@@ -7,6 +7,6 @@ module.exports = {
     // await run.command('echo "Hello world"')
     getNewPackageJson()
     generateIndex()
-    await run.command('yarn')
+    await run.command('yarn add https://github.com/mecirmartin/cra-build-watch')
   }
 };

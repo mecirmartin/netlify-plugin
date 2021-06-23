@@ -6,10 +6,6 @@ exports.getNewPackageJson = () => {
 
   const finalPackageJson = {
     ...parsedPackageJson,
-    devDependencies: { 
-        ...parsedPackageJson.devDependencies, 
-        "cra-build-watch": "https://github.com/mecirmartin/cra-build-watch"
-    },
     scripts: {
         ...parsedPackageJson.scripts,
         build: parsedPackageJson.scripts.build.replace('react-scripts build', 'yarn cra-build-watch')
