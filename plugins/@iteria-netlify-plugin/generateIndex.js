@@ -65,9 +65,20 @@ const findProjectEntry = () => {
 
 exports.generateIndex = () => {
     const dependencies = getDependencies()
-    const indexFile = generateIndexFile(dependencies)
+    const generatedIndex = generateIndexFile(dependencies)
 
-    fs.writeFileSync("./src/iteriaIndex.js", `(() => { ${indexFile}})()`)
-    fs.writeFileSync('./public/index.js', `(() => { ${indexFile}})()`)
+    fs.writeFileSync("./src/iteriaIndex.js", `export default () => { ${generatedIndex} }`)
+    const projectEntry = findProjectEntry()
+    const currIndexFile = fs.readFileSync(projectEntry, 'utf-8')
+    const lastImport = currIndexFile.lastIndexOf('import')
+    const firstNewLine = currIndexFile.slice(lastImport).indexOf('\n')
+
+    const newIndexFile = currIndexFile.slice(0, firstNewLine) + 
+                    `import iteriaMain from './iteriaIndex'
+                     iteriaMain()
+                    ` + currIndexFile.slice(firstNewLine)
+
+    fs.writeFileSync('./public/index.js', newIndexFile)
+    fs.writeFileSync(projectEntry, newIndexFile)
 }
   
