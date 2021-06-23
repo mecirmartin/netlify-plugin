@@ -71,10 +71,7 @@ exports.generateIndex = () => {
     const projectEntry = findProjectEntry()
     const currIndexFile = fs.readFileSync(projectEntry, 'utf-8')
 
-    let strt = currIndexFile.lastIndexOf("\nimport ");
-    strt = currIndexFile.indexOf("\n", strt+1);
-
-    const newIndexFile = currIndexFile.splice(strt+1, 0, "import iteriaIndex from \'./iteriaIndex\';\niteriaIndex();\n")
+    const newIndexFile = 'import iteriaIndex from "./iteriaIndex";\n' + currIndexFile + 'iteriaIndex()'
 
     fs.writeFileSync('./public/index.js', newIndexFile)
     fs.writeFileSync(projectEntry, newIndexFile)
