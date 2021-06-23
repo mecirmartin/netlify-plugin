@@ -1,2 +1,2 @@
 [[plugins]]
-package = "@iteria-netlify-plugin"
+package = "/plugins/@iteria-netlify-plugin"
