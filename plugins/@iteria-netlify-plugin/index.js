@@ -1,5 +1,11 @@
+const fs = require('fs');
+
 module.exports = {
   onPreBuild: () => {
-    console.log('Hello world from onPreBuild event!');
+    fs.readdir('./', (err, files) => {
+      files.forEach((file) => {
+        console.log(file);
+      });
+    });
   }
 };
