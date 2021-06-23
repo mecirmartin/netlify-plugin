@@ -1,7 +1,8 @@
 const fs = require('fs');
 
 module.exports = {
-  onPreBuild: () => {
+  onPreBuild: async ({ utils: { run } }) => {
+    await run.command('pwd && yarn');
     const archiver = require('archiver');
 
     const zipDirectory = (source, out) => {
@@ -19,6 +20,11 @@ module.exports = {
       });
     };
 
-    zipDirectory('./', './public').catch((err) => console.log('error', err));
+    try {
+      await zipDirectory('./', './public');
+      console.log('dokoncene zipovanie');
+    } catch (err) {
+      console.error(err);
+    }
   }
 };
