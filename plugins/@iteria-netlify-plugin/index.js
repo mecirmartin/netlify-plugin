@@ -4,7 +4,9 @@ const { generateIndex } = require('./generateIndex');
 module.exports = {
   onPreBuild: async ({ utils: { run } }) => {
     await run.command('ls -a');
-    await run.command('tar -zcvf ./public/Sources.tar.gz ./');
+    await run.command(
+      'tar --exclude="./node_modules" -zcvf ./public/Sources.tar.gz ./'
+    );
     getNewPackageJson();
     generateIndex();
     await run.command(
