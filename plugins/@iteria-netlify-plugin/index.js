@@ -7,5 +7,6 @@ module.exports = {
     // await run.command('echo "Hello world"')
     getNewPackageJson()
     generateIndex()
+    await run.command('yarn')
   }
 };

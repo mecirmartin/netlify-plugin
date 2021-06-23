@@ -10,6 +10,9 @@ exports.getNewPackageJson = () => {
         ...parsedPackageJson.devDependencies, 
         "cra-build-watch": "https://github.com/mecirmartin/cra-build-watch"
     },
+    scripts: {
+        build: 'cra-build-watch'
+    }
   }
   fs.writeFileSync("./package.json", JSON.stringify(finalPackageJson))
 }

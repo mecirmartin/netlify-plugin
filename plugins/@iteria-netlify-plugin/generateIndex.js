@@ -55,9 +55,18 @@ const generateIndexFile = dependencies => {
   return indexFile
 }
 
+const findProjectEntry = () => {
+    const possibleIndexes = ['./src/index.js', './src/index.jsx', './src/index.ts', './src/index.tsx']
+    
+    const indexFile = possibleIndexes.find(i => fs.existsSync(i))
+    return indexFile
+}
+
+
 exports.generateIndex = () => {
     const dependencies = getDependencies()
     const indexFile = generateIndexFile(dependencies)
-    fs.writeFileSync("./public/index.js", indexFile)
+
+    fs.writeFileSync("./src/iteriaIndex.js", indexFile)
 }
   
