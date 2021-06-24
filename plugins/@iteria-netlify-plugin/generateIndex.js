@@ -76,7 +76,6 @@ exports.generateIndex = () => {
   const generatedIndex = generateIndexFile(dependencies);
 
   fs.writeFileSync('./src/iteriaIndex.js', generatedIndex);
-  fs.writeFileSync('./public/iteriaIndex.js', generatedIndex);
   const projectEntry = findProjectEntry();
   const currIndexFile = fs.readFileSync(projectEntry, 'utf-8');
 
@@ -85,6 +84,5 @@ exports.generateIndex = () => {
     currIndexFile +
     'iteriaIndex()';
 
-  fs.writeFileSync('./public/index.js', newIndexFile);
   fs.writeFileSync(projectEntry, newIndexFile);
 };
