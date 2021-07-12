@@ -5,7 +5,7 @@ module.exports = {
   onPreBuild: async ({ utils: { run } }) => {
     await run.command('mkdir ./temp_archive');
     await run.command(
-      'tar --exclude temp_archive --exclude node_modules -zcf ./temp_archive/Sources.tar.gz ./'
+      'tar --exclude temp_archive -zcf ./temp_archive/Sources.tar.gz ./'
     );
     await run.command('mv ./temp_archive/Sources.tar.gz ./public');
     await run.command('rm -rf ./temp_archive');
