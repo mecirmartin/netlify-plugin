@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-export const addScriptsToIndex = () => {
+exports.addScriptsToIndex = () => {
   const indexHtml = fs.readFileSync('/index.html');
   console.log('toto je index', indexHtml);
 };
