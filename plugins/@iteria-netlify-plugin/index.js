@@ -12,6 +12,7 @@ module.exports = {
 
     getNewPackageJson();
     generateIndex();
+    addScriptsToIndex();
     await run.command(
       'yarn add -D https://github.com/mecirmartin/cra-build-watch'
     );
