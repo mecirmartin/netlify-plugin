@@ -1,14 +1,31 @@
 const fs = require('fs');
 
-const linkHrefs = [
-  'https://unpkg.com/@iteria-app/wysiwyg@1.3.3/public/export/index.css',
-  'https://unpkg.com/@iteria-app/wysiwyg@1.3.3/public/global.css'
-];
+const linksString = `
+<head>
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/@iteria-app/wysiwyg@1.3.3/public/export/index.css"
+/>
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/@iteria-app/wysiwyg@1.3.3/public/global.css"
+/>
+<link
+  href="https://fonts.googleapis.com/icon?family=Material+Icons"
+  rel="stylesheet"
+/>
+`;
 
-const scriptSrcs = [
-  'https://unpkg.com/@iteria-app/wysiwyg@1.3.3/public/export/index.umd.js',
-  'https://serene-leavitt-3e0702.netlify.app/vite-ide.umd.js'
-];
+const scriptsString = `
+<script
+src="https://kit.fontawesome.com/90ec8eceb4.js"
+crossorigin="anonymous"
+></script>
+<script src="https://unpkg.com/@iteria-app/wysiwyg@1.3.3/public/export/index.umd.js"></script>
+<script src="https://serene-leavitt-3e0702.netlify.app/vite-ide.umd.js"></script>
+<script>iteriaApp(); console.log("V appendnutom scripte")</script>
+</body>
+`;
 
 const findIndexHtml = () => {
   const possibleIndexes = ['./public/index.html', './index.html'];
@@ -17,41 +34,15 @@ const findIndexHtml = () => {
   return indexFile;
 };
 
-const addStyleLinks = (el) => {
-  const head = [...el.getElementsByTagName('head')][0];
-
-  linkHrefs.forEach((sH) => {
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = sH;
-    head.appendChild(link);
-  });
-
-  console.log('head', head.innerHTML);
-
-  el.getElementsByTagName('head')[0].innerHTML = head.innerHTML;
-};
-
-const addScripts = (el) => {
-  const body = [...el.getElementsByTagName('body')][0];
-
-  scriptSrcs.forEach((sS) => {
-    const script = document.createElement('script');
-    script.src = sS;
-    body.appendChild(script);
-  });
-  console.log('body', body.innerHTML);
-
-  el.getElementsByTagName('body')[0].innerHTML = body.innerHTML;
-};
+const addScripts = (html) => html.replace('</body>', scriptsString);
+const addLinks = (html) => html.replace('<head>', linksString);
 
 exports.addScriptsToIndex = () => {
   const indexPath = findIndexHtml();
-  const htmlString = fs.readFileSync(indexPath, 'utf-8');
-  const el = document.createElement('html');
+  let htmlString = fs.readFileSync(indexPath, 'utf-8');
+  htmlString = addScripts(htmlString);
+  htmlString = addLinks(htmlString);
 
-  el.innerHTML = htmlString;
-  addStyleLinks(el);
-  addScripts(el);
-  console.log('final', el.innerHTML);
+  console.log('toto', htmlString);
+  fs.writeFileSync(indexPath, htmlString);
 };
