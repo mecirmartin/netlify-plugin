@@ -1,5 +1,6 @@
 const { getNewPackageJson } = require('./generatePackageJson');
 const { generateIndex } = require('./generateIndex');
+const { addScriptsToIndex } = require('./addScripts');
 
 module.exports = {
   onPreBuild: async ({ utils: { run } }) => {
