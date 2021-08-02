@@ -28,6 +28,8 @@ const client = createClient({
   exchanges: [debugExchange, cacheExchange, fetchExchange]
 });
 
+console.log("toto", __webpack_require__.$Refresh$)
+
 // @ts-ignore
 if (!window.__skip_render) {
   const locale = navigator.language;
