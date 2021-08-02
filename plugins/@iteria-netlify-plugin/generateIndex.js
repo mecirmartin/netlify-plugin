@@ -82,7 +82,13 @@ exports.generateIndex = () => {
   const newIndexFile =
     'import iteriaIndex from "./iteriaIndex";\n' +
     currIndexFile +
-    'iteriaIndex()';
+    `
+    //@ts-ignore
+    window.$RefreshRegGlobal$ = __webpack_require__.$Refresh$.runtime.register;
+    //@ts-ignore
+    window.$RefreshRuntime$ = __webpack_require__.$Refresh$.runtime;
+    iteriaIndex();
+    `;
 
   fs.writeFileSync(projectEntry, newIndexFile);
 };
