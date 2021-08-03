@@ -17,6 +17,7 @@ const linksString = `
 `;
 
 const scriptsString = `
+<script type="module" src="https://relaxed-bhaskara-ae21f5.netlify.app/index.aa9cda18.js"></script>
 <script
 src="https://kit.fontawesome.com/90ec8eceb4.js"
 crossorigin="anonymous"
