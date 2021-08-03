@@ -22,12 +22,12 @@ src="https://kit.fontawesome.com/90ec8eceb4.js"
 crossorigin="anonymous"
 ></script>
 <script src="https://unpkg.com/@iteria-app/wysiwyg@1.3.3/public/export/index.umd.js"></script>
-<script src="https://silly-gates-9218a8.netlify.app/vite-ide.umd.js"></script>
+<script src="https://adoring-keller-a0330b.netlify.app/vite-ide.umd.js"></script>
 <script>iteriaApp(); console.log("V appendnutom scripte");</script>
 </body>
 `;
 
-const findIndexHtml = () => {
+const findIndexPath = () => {
   const possibleIndexes = ['./public/index.html', './index.html'];
 
   const indexFile = possibleIndexes.find((i) => fs.existsSync(i));
@@ -38,7 +38,7 @@ const addScripts = (html) => html.replace('</body>', scriptsString);
 const addLinks = (html) => html.replace('<head>', linksString);
 
 exports.addScriptsToIndex = () => {
-  const indexPath = findIndexHtml();
+  const indexPath = findIndexPath();
   let htmlString = fs.readFileSync(indexPath, 'utf-8');
   htmlString = addScripts(htmlString);
   htmlString = addLinks(htmlString);
