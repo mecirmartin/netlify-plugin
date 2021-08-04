@@ -2,6 +2,6 @@
 package = "/plugins/@iteria-netlify-plugin"
 
 [[redirects]]
-  from = "/*"
-  to = "/"
-  status = 404
+from = "/*"
+to = "/"
+status = 200
