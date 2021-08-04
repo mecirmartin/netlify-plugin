@@ -17,15 +17,10 @@ const linksString = `
 `;
 
 const scriptsString = `
-<script type="module">
-  import * as iteria from 'https://unpkg.com/@iteria-app/bundler@0.1.2/dist/bundler.es.js';
-  window.iteriaWorker = iteria.iteriaWorker;
-</script>
 <script
 src="https://kit.fontawesome.com/90ec8eceb4.js"
 crossorigin="anonymous"
 ></script>
-<script src="https://unpkg.com/@iteria-app/wysiwyg@1.3.4/public/export/index.umd.js"></script>
 <script src="https://wonderful-mclean-d8b4cd.netlify.app/vite-ide.umd.js"></script>
 <script>iteriaApp();</script>
 </body>
