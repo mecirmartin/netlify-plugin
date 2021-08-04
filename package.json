@@ -66,5 +66,6 @@
     "@graphql-codegen/typescript-operations": "1.17.15",
     "@graphql-codegen/typescript-urql": "^2.0.5",
     "@graphql-codegen/urql-introspection": "1.0.0"
-  }
+  }, 
+  "homepage": "/"
 }
